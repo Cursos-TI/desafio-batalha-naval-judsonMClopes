@@ -19,7 +19,7 @@ printf("\n ***** TABULEIRO BATALHA NAVAL *****\n\n");
 char linha [10] = {'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J'};
 
 // Espaçamento inicial para alinhar as colunas com os números das linhas
-printf("  ");
+printf("   ");
 
 // Variável de controle que indica se as posições estão livres (1 = livre, 0 = ocupado).
 int livre = 1;
@@ -42,7 +42,7 @@ int livre = 1;
             tabuleiro[linhaVertical][1] = 3;
         }   
       } 
-    // Redefine a variável de controle para verificar se as posições estão livres (1 = livre, 0 = ocupado).
+// Redefine a variável de controle para verificar se as posições estão livres (1 = livre, 0 = ocupado).
       livre = 1;
     // Loop para verificar se as posições do navio horizontal estão livres.
     for (int colunaHorizontal = 7; colunaHorizontal <= 9; colunaHorizontal++)
@@ -62,6 +62,49 @@ int livre = 1;
               tabuleiro[1][colunaHorizontal] = 3;
             } 
           }
+  // Redefine a variávle de controle para verificar se as posições estão livres (1 = livre e 0 = ocupado)
+          livre = 1;
+          // Loop para verificar se as posições do navio diagonal principal estão livres.
+          for (int diagonalPrincipal = 6; diagonalPrincipal < 9; diagonalPrincipal++)
+          {
+            // Estrutura de decisão que verifica se a posição do tabuleiro já está ocupada.
+            if (tabuleiro[diagonalPrincipal][diagonalPrincipal] != 0)
+            // Define 0 a variável livre; indicando posição ocupada.
+              livre = 0;
+          }
+          // Verifica se todas as posições estão livres para posicionar o navio.
+          if (livre)
+          {
+            // Percorre as posições do navio diagonal principal.
+              for (int diagonalPrincipal = 6; diagonalPrincipal < 9; diagonalPrincipal++)
+            {
+            // Posiciona navio diagonal principal no tabuleiro.
+            tabuleiro[diagonalPrincipal][diagonalPrincipal] = 3;
+            }
+          }
+  // Redefine a variável de controle para verificar se as posições estão livres (1 = livre, 0 = ocupado).
+        livre = 1;
+        // Loop para verificar se as posições do navio diagonal secundária estão livres.
+        for (int diagonalSecundaria = 3; diagonalSecundaria < 6; diagonalSecundaria++)
+        {
+          // Estrutura de decisão que verifica se a posição do tabuleiro já está ocupada.
+          if (tabuleiro[diagonalSecundaria][9 - diagonalSecundaria] != 0)
+          {
+            // Define 0 a variável livre; indicando posição ocupada.
+            livre = 0;
+          } 
+        }
+        // Verifica se todas as posições estão livres para posicionar o navio.
+        if (livre)
+        {
+          // Percorre todas as posições do navio diagonal secundária.
+          for (int diagonalSecundaria = 3; diagonalSecundaria < 6; diagonalSecundaria++)
+          {
+            // Posiciona navio diagonal secundária no tabuleiro.
+            tabuleiro[diagonalSecundaria][9 - diagonalSecundaria] = 3;
+          }
+          
+        }
           
 // Percorre vetor com as letras das colunas.          
 for (int colunaCab = 0; colunaCab < 10; colunaCab++)
